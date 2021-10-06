@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:myget/provider/usersP.dart';
+
 import '../models/user.dart';
 
 class UsersC extends GetxController {
@@ -13,17 +15,20 @@ class UsersC extends GetxController {
     );
   }
 
+// Fungsi menambahkan data
   void add(String name, String email, String phone) {
     if (name != '' && email != '' && phone != '') {
       if (email.contains("@")) {
-        users.add(
-          User(
-            id: DateTime.now().toString(),
-            name: name,
-            email: email,
-            phone: phone,
-          ),
-        );
+        UsersProvider().postData(name, email, phone).then((value) {
+          users.add(
+            User(
+              id: value.body["name"].toString(),
+              name: name,
+              email: email,
+              phone: phone,
+            ),
+          );
+        });
         Get.back();
       } else {
         snackBarError("Masukan email valid");
@@ -32,19 +37,26 @@ class UsersC extends GetxController {
       snackBarError("Semua data harus diisi");
     }
   }
+
+// Fungsi mencari data
 
   User userById(String id) {
     return users.firstWhere((element) => element.id == id);
   }
 
+// Fungsi mengedit data
+
   void edit(String id, String name, String email, String phone) {
     if (name != '' && email != '' && phone != '') {
       if (email.contains("@")) {
-        final user = userById(id);
-        user.name = name;
-        user.email = email;
-        user.phone = phone;
-        users.refresh();
+        UsersProvider().editData(id, name, email, phone).then((_) {
+          final user = userById(id);
+          user.name = name;
+          user.email = email;
+          user.phone = phone;
+          users.refresh();
+        });
+
         Get.back();
       } else {
         snackBarError("Masukan email valid");
@@ -53,6 +65,8 @@ class UsersC extends GetxController {
       snackBarError("Semua data harus diisi");
     }
   }
+
+// Fungsi hapus data
 
   Future<bool> delete(String id) async {
     bool _deleted = false;
@@ -62,9 +76,11 @@ class UsersC extends GetxController {
       textConfirm: "Ya",
       confirmTextColor: Colors.white,
       onConfirm: () {
-        users.removeWhere((element) => element.id == id);
-        _deleted = true;
-        Get.back();
+        UsersProvider().deleteData(id).then((_) {
+          users.removeWhere((element) => element.id == id);
+          _deleted = true;
+          Get.back();
+        });
       },
       textCancel: "Tidak",
     );

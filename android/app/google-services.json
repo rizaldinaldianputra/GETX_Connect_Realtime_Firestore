@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "367566895230",
+    "firebase_url": "https://getconnect-project-16aeb-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "getconnect-project-16aeb",
+    "storage_bucket": "getconnect-project-16aeb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367566895230:android:f2bd85b5ff72c17f84002f",
+        "android_client_info": {
+          "package_name": "com.example.myget"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "367566895230-0d1lv3h02podls78r3m2jloeahsrob2b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsvt0CAiOLgs-AG4PGXzlPl39NGV2_G4Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "367566895230-0d1lv3h02podls78r3m2jloeahsrob2b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

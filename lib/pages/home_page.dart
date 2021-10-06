@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ALL USERS"),
+        title: Text("HOME"),
         actions: [
           IconButton(
             onPressed: () => Get.toNamed(RouteName.add),
